@@ -364,8 +364,12 @@ def describe(df, bins=10, check_correlation=True, correlation_threshold=0.9, cor
         pool.close()
 
     # Get correlations
-    dfcorrPear = df.corr(method="pearson")
-    dfcorrSpear = df.corr(method="spearman")
+    if check_correlation:
+        dfcorrPear = df.corr(method="pearson")
+        dfcorrSpear = df.corr(method="spearman")
+    else:
+        dfcorrPear = None
+        dfcorrSpear = None
 
     # Check correlations between variable
     if check_correlation is True:
